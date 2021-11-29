@@ -21,12 +21,12 @@ PYTHON_CMD="source ${VENV_DIR} && python train.py --algo ddpg --agent_type gama 
 
 if [ $i -ne $BEGIN ]
 then
-    tmux selectp -t $SESS_NAME:1
+    tmux selectp -t $SESS_NAME:0
     tmux split-window -h
-    tmux send-keys -t $SESS_NAME:1 "$PYTHON_CMD" "C-m"
+    tmux send-keys -t $SESS_NAME:0 "$PYTHON_CMD" "C-m"
 else
-    tmux selectp -t $SESS_NAME:1
-    tmux send-keys -t $SESS_NAME:1 "$PYTHON_CMD" "C-m"
+    tmux selectp -t $SESS_NAME:0
+    tmux send-keys -t $SESS_NAME:0 "$PYTHON_CMD" "C-m"
 fi
 
 sleep 15

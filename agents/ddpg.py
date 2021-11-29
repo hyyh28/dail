@@ -9,6 +9,7 @@ from matplotlib import pyplot as plt
 import pylab as pl
 import imageio
 import random
+import os
 from tqdm import tqdm
 
 from threading import Lock
@@ -64,6 +65,12 @@ class DDPGAgent():
             self.logdir = logdir
             self.render = render
             self.gpu = gpu
+            if not os.path.exists(self.save_learner_dir):
+                os.makedirs(self.save_learner_dir)
+            if not os.path.exists(self.save_dataset_dir):
+                os.makedirs(self.save_dataset_dir)
+            if not os.path.exists(self.save_expert_dir):
+                os.makedirs(self.save_expert_dir)
 
             # Build computation graph for the DDPG agent
             self.ph, self.graph, self.targets, \
@@ -500,6 +507,7 @@ class DDPGAgent():
             if epoch_gama_loss < best_gama_loss:
                 best_gama_loss = epoch_gama_loss
                 best_gama_reward = readouts[d_]['total_reward']
+
                 self.saver_learner.save(self.sess, self.save_learner_dir+'/learner.ckpt')
 
             # Print out metrics
