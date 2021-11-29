@@ -12,7 +12,7 @@ tmux new-session -d -s $SESS_NAME
 
 BEGIN=0
 END=3
-TOTAL_GPU=1
+TOTAL_GPU=2
 
 for ((i=BEGIN; i<=END; i++)); do
 gpu_num=$((i % TOTAL_GPU))

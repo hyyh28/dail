@@ -439,7 +439,7 @@ class DDPGAgent():
         best_reward = -np.inf
         best_gama_loss = np.inf
 
-        while True:
+        while step <= 50000:
 
             for idx in tqdm(range(500)):
                 # grab N (s,a,r,s') tuples from replay memory

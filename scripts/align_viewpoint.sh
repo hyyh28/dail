@@ -4,15 +4,15 @@
 # 8/10 worked
 
 # start new tmux sesson
-SESS_NAME="align_viewpoint"
+SESS_NAME="align_dynamics"
 DOC="empty"
-VENV_DIR="../.virtualenv/cdil/bin/activate"
+VENV_DIR="activate dail"
 tmux kill-session -t $SESS_NAME
 tmux new-session -d -s $SESS_NAME
 
 BEGIN=0
-END=9
-TOTAL_GPU=4
+END=3
+TOTAL_GPU=2
 
 for ((i=BEGIN; i<=END; i++)); do
 gpu_num=$((i % TOTAL_GPU))
