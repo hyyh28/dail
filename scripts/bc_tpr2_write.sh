@@ -13,12 +13,12 @@ tmux new-session -d -s $SESS_NAME
 
 BEGIN=0
 END=4
-TOTAL_GPU=4
+TOTAL_GPU=2
 
 for ((i=BEGIN; i<=END; i++)); do
 gpu_num=$((i % TOTAL_GPU))
 
-PYTHON_CMD="source ${VENV_DIR} && python train.py --algo ddpg --agent_type bc --save_expert_dir ./target_expert/tp_write_reacher2/demo200_seed_${i} --load_dataset_dir ./target_demo/tp_write_reacher2 --edomain tp_write_reacher2 --ldomain write_reacher2 --seed 100${i} --doc tpr2_write_bc_${i} --n_demo 200 --gpu ${gpu_num}"
+PYTHON_CMD="conda activate dail && python train.py --algo ddpg --agent_type bc --save_expert_dir ./target_expert/tp_write_reacher2/demo200_seed_${i} --load_dataset_dir ./target_demo/tp_write_reacher2 --edomain tp_write_reacher2 --ldomain write_reacher2 --seed 100${i} --doc tpr2_write_bc_${i} --n_demo 200 --gpu ${gpu_num}"
 
 if [ $i -ne $BEGIN ]
 then
